@@ -13,6 +13,11 @@
     <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='css/decode.css') }}" rel="stylesheet">
+
+    <!-- reCaptcha source -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
   </head>
 
   <body>
@@ -34,26 +39,29 @@
             </div>
           </div>
 
-        <h2>Enter the message below for feedback</h2>
-        <p class="info">The longer the message the more accurate the feedback.<p>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="textarea" class="col-sm-2 control-label">Message</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" rows="3" placeholder="Your message..."></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
-          </div>
-        </form>
+          <div class="cover">
+            <h2>Enter the message below for feedback</h2>
+            <p class="info">The longer the message the more accurate the feedback.<p>
+            <form class="form-horizontal cover">
+              <div class="form-group">
+                <label for="textarea" class="col-sm-2 control-label">Message</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control form-control-textarea" rows="3" placeholder="Your message..."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="g-recaptcha" data-sitekey="6LdQVRoUAAAAAHDkhvsuNZ4HcTJYwGRCZ_ysI3QH"></div>
+                  <button type="submit" class="btn btn-lg btn-secondary">Decipher</button>
+                </div>
+              </div>
+            </form>
 
-          <div class="mastfoot">
-            <div class="inner">
-              <p><a href="http://www.gavinfynbo.com">@Gavin</a> &amp; <a href="https://www.linkedin.com/in/tatiana-diaz-gallegos-77a198129/">@Tatiana</a> | HackBeanpot &mdash; Theme by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-            </div>
+              <div class="mastfoot">
+                <div class="inner">
+                  <p><a href="http://www.gavinfynbo.com">@Gavin</a> &amp; <a href="https://www.linkedin.com/in/tatiana-diaz-gallegos-77a198129/">@Tatiana</a> | HackBeanpot &mdash; Theme by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                </div>
+              </div>
           </div>
 
         </div>
