@@ -7,16 +7,13 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Decode | Decoding the Text</title>
+    <title>Success | Decoding the Text</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{{ url_for('static',filename='css/decode.css') }}" rel="stylesheet">
-
-    <!-- reCaptcha source -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <link href="{{ url_for('static',filename='css/cover.css') }}" rel="stylesheet">
 
   </head>
 
@@ -38,24 +35,12 @@
               </nav>
             </div>
           </div>
+
           <div class="cover">
-            {% for messages in form.message.errors %}
-            <div>{{ messages }}</div>
-            {% endfor %}
-            <h2>Enter the message below for feedback</h2>
-            <p class="info">The longer the message the more accurate the feedback.<p>
-            <form class="" method="POST">
-                {{ form.csrf_token }}
-                <label>{{ form.message.label }}</label>
-                <br>
-                {{ form.message(cols="40", rows="10") }}
-              </div>
-              <div class="">
-                <div class="">
-                  <div class="g-recaptcha" data-sitekey="6LdQVRoUAAAAAHDkhvsuNZ4HcTJYwGRCZ_ysI3QH"></div>
-                  {{ form.submit() }}
-                </div>
-              </div>
+              <p>Message being deciphered: <em>"{{ message }}"</em></p>
+            <h2>{{ results }}</h2>
+            <h2>{{ advice }}</h2>
+            <a href="{{ url_for('decode') }}" class="btn btn-lg btn-secondary">Decode Another</a>
             </form>
 
               <div class="mastfoot">
