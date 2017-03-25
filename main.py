@@ -63,10 +63,10 @@ def process(text=None):
     # Emotions Emojis:
     emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628',
             'anger': '\U0001F621', 'surprise': '\U0001F631'}
-    Sad = "\U0001F622"
+    Sadness = "\U0001F622"
     Fear = "\U0001F628"
     Joy = "\U0001F600"
-    Angry = "\U0001F621"
+    Anger = "\U0001F621"
     Surprise = "\U0001F631"
 
     # Personas Emojis:
@@ -120,8 +120,8 @@ def process(text=None):
     # Emotion Message
     printed_emotion = False # Check make sure not whole_message +=  max if whole_message += ed an emotion already
     second_print = False # Check if whole_message += ed more than one message, so whole_message += s accordingly
-    is_angry = False
-    is_sad = False
+    is_anger = False
+    is_sadness = False
     is_joy = False
     is_fear = False
     is_surprise = False
@@ -133,14 +133,14 @@ def process(text=None):
         is_joy = True
     if emotion1['anger'] >= 0.3:
         if second_print == True:
-            whole_message += " And, they also seem pretty upset." + Angry
+            whole_message += " And, they also seem pretty upset." + Anger
             printed_emotion = True
-            is_angry = True
+            is_anger = True
         else:
-            whole_message += " They seem pretty upset. " + Angry
+            whole_message += " They seem pretty upset. " + Anger
             printed_emotion = True
             second_print = True
-            is_angry = True
+            is_anger = True
     if emotion1['fear'] >= 0.3:
         if second_print == True:
             whole_message += " And, they also seem kind of afraid. " + Fear
@@ -163,13 +163,13 @@ def process(text=None):
             is_surprise = True
     if emotion1['sadness'] >= 0.3:
         if second_print == True:
-            whole_message += " And, they also seem a little sad. " + Sad
+            whole_message += " And, they also seem a little sad. " + Sadness
             printed_emotion = True
-            is_sad = True
+            is_sadness = True
         else:
-            whole_message += " They seem pretty sad. " + Sad
+            whole_message += " They seem pretty sad. " + Sadness
             printed_emotion = True
-            is_sad = True
+            is_sadness = True
 
     # Finding Max probability of Emotion
     if printed_emotion == False:
@@ -184,9 +184,9 @@ def process(text=None):
         if emot_emojis[tempe_str] == 'joy':
             is_joy = True
         elif emot_emojis[tempe_str] == 'sadness':
-            is_sad = True
+            is_sadness = True
         elif emot_emojis[tempe_str] == 'anger':
-            is_angry = True
+            is_anger = True
         elif emot_emojis[tempe_str] == 'fear':
             is_fear = True
         elif emot_emojis[tempe_str] == 'surprise':
@@ -212,13 +212,10 @@ def process(text=None):
     # ANALYZE THE RESULTS AND PROVIDE A SUGGESTION
     whole_message += "\n Our Reccomendation: **Follow at your own risk!** \n"
 
-
-    if is_angry == True and is_sad == True:
+    if is_anger == True and is_sadness == True:
         whole_message += " You might want to let things cool down."
     elif is_joy == True and is_pos == True:
         whole_message += " Everything sounds good, keep it up!"
-
-
 
     ################################################################################
 
