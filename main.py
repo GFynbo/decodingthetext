@@ -63,9 +63,8 @@ def process(text=None):
 
     whole_message = ""
 
-    emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628', 'anger': '\U0001F621', 'surprise': '\U0001F631'}
-
     # Emotions
+    emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628', 'anger': '\U0001F621', 'surprise': '\U0001F631'}
     Sad = "\U0001F622"
     Fear = "\U0001F628"
     Happy = "\U0001F600"
@@ -73,20 +72,21 @@ def process(text=None):
     Surprise = "\U0001F631"
 
     # Personas
-    # Logistician = "\U0001F #
-    # Consul = "\U0001F  #
-    # Protagonist = "\U0001F
-    Advocate = "\U0001F575" #investigator
-    # Logician = "\U0001F
-    Adventurer = "\U0001F3C4" #surfing
-    Mediator = "\U00002696"  #judge
-    # Entrepreneur = "\U0001F
+    pers_emojis = {'logistician': '\U0001F52C', 'consul': '\U0001F46B', 'protagonist': '\U0001F385', 'advocate': '\U0001F52E', 'logician': '\U0001F4AD', }
+    Logistician = "\U0001F52C" # Microscope
+    Consul = "\U0001F46B"  # People person
+    Protagonist = "\U0001F385" # Santa
+    Advocate = "\U0001F52E" # Mystical
+    Logician = "\U0001F4AD" # Thought Bubble
+    Adventurer = "\U0001F3A8" #painter
+    Mediator = "\U0001F6A6"  #taffic light
+    Entrepreneur = "\U0001F4C8" #work hard, own business, graph scale
     Architect = "\U0001F477"  #hardhat
-    #Virtuoso = "\U0001F" #graduate
-    # Campaigner = "\U0001F
+    Virtuoso = "\U0001F527" #screw
+    Campaigner = "\U0001F638" #Find reason to smile, cat smiley
     Defender = "\U0001F46E" #cop
-    # Debater = "\U0001F #teacher
-    # Commander = "\U0001F
+    Debater = "\U000023F0" #clock
+    Commander = "\U00002708"   #pilot
     Executive = "\U0001F4BC"  #suit
     Entertainer = "\U0001F3A4" #singer
 
@@ -97,6 +97,15 @@ def process(text=None):
     whole_message += "Mediator" + Mediator
     whole_message += "Adventurer" + Adventurer
     whole_message += "Advocate" + Advocate
+    whole_message += "Protagonist" + Protagonist
+    whole_message += "Logistician" + Logistician
+    whole_message += "Virtuoso" + Virtuoso
+    whole_message += "Logician" + Logician
+    whole_message += "Debater" + Debater
+    whole_message += "Commander" + Commander
+    whole_message += "Entrepreneur" + Entrepreneur
+    whole_message += "Consul" + Consul
+    whole_message += "Campaigner" + Campaigner
 
     ################################################################################
 
@@ -118,7 +127,6 @@ def process(text=None):
     # Emotion Message
     printed_em = False # check make sure not whole_message +=  max if whole_message += ed an emotion already
     second_pr = False # check if whole_message += ed more than one message, so whole_message += s accordingly
-
 
     if emotion1['joy'] >= 0.3:
         whole_message += " They seem pretty happy! " + Happy
