@@ -63,6 +63,8 @@ def process(text=None):
 
     whole_message = ""
 
+    emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628', 'anger': '\U0001F621', 'surprise': '\U0001F631'}
+
     # Emotions
     Sad = "\U0001F622"
     Fear = "\U0001F628"
@@ -109,9 +111,9 @@ def process(text=None):
 
     # Sentiment Message
     if sentiment1 >= 0.5:
-        whole_message += "\nThis looks like a good sign!"
+        whole_message += "\nThis looks like a good sign! They appear to be enjoying the conversation."
     else:
-        whole_message += "\nUh oh, this message isn't super positive."
+        whole_message += "\nUh oh, this message isn't super positive. Did something happen or did you do something?"
 
     ################################################################################
 
@@ -119,40 +121,41 @@ def process(text=None):
     printed_em = False # check make sure not whole_message +=  max if whole_message += ed an emotion already
     second_pr = False # check if whole_message += ed more than one message, so whole_message += s accordingly
 
+
     if emotion1['joy'] >= 0.3:
-        whole_message += "They seem pretty joyful!" + Happy
+        whole_message += " They seem pretty happy! " + Happy
         printed_em = True
         second_pr = True
     if emotion1['anger'] >= 0.3:
         if second_pr == True:
-            whole_message += "And, they also seem pretty angry." + Angry
+            whole_message += " And, they also seem pretty upset." + Angry
             printed_em = True
         else:
-            whole_message += "They seem pretty angry." + Angry
+            whole_message += " They seem pretty upset. " + Angry
             printed_em = True
             second_pr = True
     if emotion1['fear'] >= 0.3:
         if second_pr == True:
-            whole_message += "And, they also seem pretty fearful." + Fear
+            whole_message += " And, they also seem kind of afraid. " + Fear
             printed_em = True
         else:
-            whole_message += "They seem pretty fearful." + Fear
+            whole_message += " They seem like they're afraid of something. " + Fear
             printed_em = True
             second_pr = True
     if emotion1['surprise'] >= 0.3:
         if second_pr == True:
-            whole_message += "And, they also seem pretty surprised!" + Surprise
+            whole_message += " And, they also seem pretty surprised! " + Surprise
             printed_em = True
         else:
-            whole_message += "They seem pretty surprised!" + Surprise
+            whole_message += " They seem pretty surprised! " + Surprise
             printed_em = True
             second_pr = True
     if emotion1['sadness'] >= 0.3:
         if second_pr == True:
-            whole_message += "And, they also seem pretty sad." + Sad
+            whole_message += " And, they also seem a little. " + Sad
             printed_em = True
         else:
-            whole_message += "They seem pretty sad." + Sad
+            whole_message += " They seem pretty sad. " + Sad
             printed_em = True
 
     # Finding Max probability of Emotion
@@ -164,44 +167,11 @@ def process(text=None):
                 tempe = emotion1[i]
                 tempe_str = i
 
-        whole_message += "They seem like they are feeling some" + tempe_str + "."
+    whole_message += " They seem like they are feeling some " + emot_emojis[tempe_str] + "(" + temp_str + ")."
 
     ################################################################################
 
-    # Persona message
-    if persona1['logistician'] >= 0.5:
-        whole_message += "It looks like you are dealing with a logistician\n"
-    elif persona1['consul'] >= 0.5:
-        whole_message += "It looks like you are dealing with a consul\n"
-    elif persona1['protagonist'] >= 0.5:
-        whole_message += "It looks like you are dealing with a protagonist\n"
-    elif persona1['advocate'] >= 0.5:
-        whole_message += "It looks like you are dealing with a advocate\n"
-    elif persona1['logician'] >= 0.5:
-        whole_message += "It looks like you are dealing with a logician\n"
-    elif persona1['adventurer'] >= 0.5:
-        whole_message += "It looks like you are dealing with a adventurer\n"
-    elif persona1['mediator'] >= 0.5:
-        whole_message += "It looks like you are dealing with a mediator\n"
-    elif persona1['entrepreneur'] >= 0.5:
-        whole_message += "It looks like you are dealing with a entrepreneur\n"
-    elif persona1['architect'] >= 0.5:
-        whole_message += "It looks like you are dealing with a architect\n"
-    elif persona1['virtuoso'] >= 0.5:
-        whole_message += "It looks like you are dealing with a virtuoso\n"
-    elif persona1['campaigner'] >= 0.5:
-        whole_message += "It looks like you are dealing with a campaigner\n"
-    elif persona1['defender'] >= 0.5:
-        whole_message += "It looks like you are dealing with a defender\n"
-    elif persona1['debater'] >= 0.5:
-        whole_message += "It looks like you are dealing with a debater\n"
-    elif persona1['commander'] >= 0.5:
-        whole_message += "It looks like you are dealing with a commander\n"
-    elif persona1['executive'] >= 0.5:
-        whole_message += "It looks like you are dealing with a executive\n"
-    elif persona1['entertainer'] >= 0.5:
-        whole_message += "It looks like you are dealing with a entertainer\n"
-
+    # Persona mensajes
     # Finding Max probability of Persona
     temp = 0
     temp_str = ""
@@ -210,13 +180,16 @@ def process(text=None):
             temp = persona1[i]
             temp_str = i
 
-    whole_message += "It looks like you are dealing with a(n)" + temp_str + ".\n"
+    if (temp_str[0] == 'e' or temp_str[0] == 'E' or temp_str[0] == 'a' or temp_str[0] == 'A'):
+        whole_message += " It looks like you are dealing with an " + temp_str + ".\n"
+    else:
+        whole_message += " It looks like you are dealing with a " + temp_str + ".\n"
+
+    ################################################################################
+    # RECOMMENDATION SECTION
+    # ANALYIZE THE RESULTS AND PROVIDE A SUGGESTION
 
 
     ################################################################################
-
-    # print('Emotion right now:', emotion1)
-    # print('Sentiment right now:', sentiment1)
-    # print('Persona right now:', persona1)
 
     return whole_message
