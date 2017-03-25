@@ -13,7 +13,6 @@ app.secret_key = 'do not try to guess this'
 def home():
     return render_template('index.html')
 
-
 class MyForm(Form):
     message = TextAreaField('Message', validators=[Required()])
     submit = SubmitField("Submit")
@@ -39,7 +38,6 @@ def success(results=None, message=None):
 if __name__ == "__main__":
     app.run()
 
-
 ################################################################################
 # Indico Examples:
 #
@@ -57,59 +55,51 @@ if __name__ == "__main__":
 #        the likelihood that the analyzed text is positive or negative
 #
 ################################################################################
-# Emoji Unicode List:
 
 def process(text=None):
 
     whole_message = ""
 
-    # Emotions
-    emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628', 'anger': '\U0001F621', 'surprise': '\U0001F631'}
+    # Emotions Emojis:
+    emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628',
+            'anger': '\U0001F621', 'surprise': '\U0001F631'}
     Sad = "\U0001F622"
     Fear = "\U0001F628"
     Happy = "\U0001F600"
     Angry = "\U0001F621"
     Surprise = "\U0001F631"
 
-    # Personas
-    pers_emojis = {'logistician': '\U0001F52C', 'consul': '\U0001F46B', 'protagonist': '\U0001F385', 'advocate': '\U0001F52E', 'logician': '\U0001F4AD', }
+    # Personas Emojis:
+    pers_emojis = {'logistician': '\U0001F52C', 'consul': '\U0001F46B', 'protagonist':
+        '\U0001F385', 'advocate': '\U0001F52E', 'logician': '\U0001F4AD', 'adventurer':
+        '\U0001F3A8', 'mediator': '\U0001F6A6', 'entrepreneur': '\U0001F6A6', 'architect':
+        '\U0001F477', 'virtuoso': '\U0001F527', 'campaigner': '\U0001F638', 'defender':
+        '\U0001F46E', 'debater': '\U000023F0', 'commander': '\U00002708', 'executive':
+        '\U0001F4BC', 'entertainer': '\U0001F3A4'}
     Logistician = "\U0001F52C" # Microscope
-    Consul = "\U0001F46B"  # People person
+    Consul = "\U0001F46B" # People person
     Protagonist = "\U0001F385" # Santa
     Advocate = "\U0001F52E" # Mystical
     Logician = "\U0001F4AD" # Thought Bubble
-    Adventurer = "\U0001F3A8" #painter
-    Mediator = "\U0001F6A6"  #taffic light
-    Entrepreneur = "\U0001F4C8" #work hard, own business, graph scale
-    Architect = "\U0001F477"  #hardhat
-    Virtuoso = "\U0001F527" #screw
-    Campaigner = "\U0001F638" #Find reason to smile, cat smiley
-    Defender = "\U0001F46E" #cop
-    Debater = "\U000023F0" #clock
-    Commander = "\U00002708"   #pilot
-    Executive = "\U0001F4BC"  #suit
-    Entertainer = "\U0001F3A4" #singer
+    Adventurer = "\U0001F3A8" # Painter
+    Mediator = "\U0001F6A6" # Traffic light
+    Entrepreneur = "\U0001F4C8" # Business graph scale
+    Architect = "\U0001F477" # Hard-hat
+    Virtuoso = "\U0001F527" # Wrench
+    Campaigner = "\U0001F638" # Cat smiley
+    Defender = "\U0001F46E" # Cop
+    Debater = "\U000023F0" # Clock
+    Commander = "\U00002708" # Airplane
+    Executive = "\U0001F4BC" # Briefcase
+    Entertainer = "\U0001F3A4" # Microphone
 
-    whole_message += "Entertainer" + Entertainer
-    whole_message += "Executive" + Executive
-    whole_message += "Defender" + Defender
-    whole_message += "Architect" + Architect
-    whole_message += "Mediator" + Mediator
-    whole_message += "Adventurer" + Adventurer
-    whole_message += "Advocate" + Advocate
-    whole_message += "Protagonist" + Protagonist
-    whole_message += "Logistician" + Logistician
-    whole_message += "Virtuoso" + Virtuoso
-    whole_message += "Logician" + Logician
-    whole_message += "Debater" + Debater
-    whole_message += "Commander" + Commander
-    whole_message += "Entrepreneur" + Entrepreneur
-    whole_message += "Consul" + Consul
-    whole_message += "Campaigner" + Campaigner
+    #Sentiment Emojis:
+    Good = "\U0001F44D" # Thumbs Up
+    Bad = "\U0001F44E" #Thumbs Down
 
     ################################################################################
 
-    # Variables
+    # Variables declared
     persona1 = indicoio.personas(text)
     sentiment1 = indicoio.sentiment_hq(text)
     emotion1 = indicoio.emotion(text)
@@ -118,15 +108,15 @@ def process(text=None):
 
     # Sentiment Message
     if sentiment1 >= 0.5:
-        whole_message += "\nThis looks like a good sign! They appear to be enjoying the conversation."
+        whole_message += "\nThis looks like a good sign! They appear to be enjoying the conversation." + Good
     else:
-        whole_message += "\nUh oh, this message isn't super positive. Did something happen or did you do something?"
+        whole_message += "\nUh oh, this message isn't super positive. Did something happen or did you do something?" + Bad
 
     ################################################################################
 
     # Emotion Message
-    printed_em = False # check make sure not whole_message +=  max if whole_message += ed an emotion already
-    second_pr = False # check if whole_message += ed more than one message, so whole_message += s accordingly
+    printed_em = False # Check make sure not whole_message +=  max if whole_message += ed an emotion already
+    second_pr = False # Check if whole_message += ed more than one message, so whole_message += s accordingly
 
     if emotion1['joy'] >= 0.3:
         whole_message += " They seem pretty happy! " + Happy
@@ -186,9 +176,9 @@ def process(text=None):
             temp_str = i
 
     if (temp_str[0] == 'e' or temp_str[0] == 'E' or temp_str[0] == 'a' or temp_str[0] == 'A'):
-        whole_message += " It looks like you are dealing with an " + temp_str + ".\n"
+        whole_message += " It looks like you are dealing with an " + pers_emojis[temp_str] + "(" + temp_str + ").\n"
     else:
-        whole_message += " It looks like you are dealing with a " + temp_str + ".\n"
+        whole_message += " It looks like you are dealing with a " + pers_emojis[temp_str] + "(" + temp_str + ").\n"
 
     ################################################################################
     # RECOMMENDATION SECTION
