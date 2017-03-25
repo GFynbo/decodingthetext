@@ -26,15 +26,15 @@ def process(message):
 def decode():
     form = MyForm()
     if request.method == 'POST':
-        return success(form.message.data)
+        return success(form.message.data, form.message.data)
     elif request.method == 'GET':
         return render_template('decode.html', form = form)
     return render_template('decode.html', form=form)
 
 @app.route('/success/', methods=('GET', 'POST'))
-def success(results=None):
+def success(results=None, message=None):
     results = process(results)
-    return render_template('success.html', results=results)
+    return render_template('success.html', results=results, message=message)
 
 if __name__ == "__main__":
     app.run()
@@ -152,7 +152,7 @@ def process(text=None):
             second_pr = True
     if emotion1['sadness'] >= 0.3:
         if second_pr == True:
-            whole_message += " And, they also seem a little. " + Sad
+            whole_message += " And, they also seem a little sad. " + Sad
             printed_em = True
         else:
             whole_message += " They seem pretty sad. " + Sad
@@ -166,8 +166,7 @@ def process(text=None):
             if emotion1[i] > tempe:
                 tempe = emotion1[i]
                 tempe_str = i
-
-    whole_message += " They seem like they are feeling some " + emot_emojis[tempe_str] + "(" + temp_str + ")."
+        whole_message += " They seem like they are feeling some " + emot_emojis[tempe_str] + "(" + tempe_str + ")."
 
     ################################################################################
 
@@ -187,7 +186,7 @@ def process(text=None):
 
     ################################################################################
     # RECOMMENDATION SECTION
-    # ANALYIZE THE RESULTS AND PROVIDE A SUGGESTION
+    # ANALYZE THE RESULTS AND PROVIDE A SUGGESTION
 
 
     ################################################################################
