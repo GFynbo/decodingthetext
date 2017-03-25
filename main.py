@@ -90,15 +90,13 @@ def process(text=None):
     Executive = "\U0001F4BC"  #suit
     Entertainer = "\U0001F3A4" #singer
 
-    '''
-    whole_message += ("Entertainer",Entertainer)
-    whole_message += ("Executive",Executive)
-    whole_message += ("Defender",Defender)
-    whole_message += ("Architect",Architect)
-    whole_message += ("Mediator",Mediator)
-    whole_message += ("Adventurer",Adventurer)
-    whole_message += ("Advocate",Advocate)
-    '''
+    whole_message += "Entertainer" + Entertainer
+    whole_message += "Executive" + Executive
+    whole_message += "Defender" + Defender
+    whole_message += "Architect" + Architect
+    whole_message += "Mediator" + Mediator
+    whole_message += "Adventurer" + Adventurer
+    whole_message += "Advocate" + Advocate
 
     ################################################################################
 
