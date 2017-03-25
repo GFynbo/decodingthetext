@@ -60,6 +60,8 @@ def process(text=None):
 
     whole_message = ""
 
+    result_message = ""
+
     # Emotions Emojis:
     emot_emojis = {'joy': '\U0001F600', 'sadness': '\U0001F622', 'fear': '\U0001F628',
             'anger': '\U0001F621', 'surprise': '\U0001F631'}
@@ -76,22 +78,23 @@ def process(text=None):
         '\U0001F477', 'virtuoso': '\U0001F527', 'campaigner': '\U0001F638', 'defender':
         '\U0001F46E', 'debater': '\U000023F0', 'commander': '\U00002708', 'executive':
         '\U0001F4BC', 'entertainer': '\U0001F3A4'}
-    # Logistician => \U0001F52C => Microscope
-    # Consul => \U0001F46B => People person
-    # Protagonist => \U0001F385 => Santa
-    # Advocate => \U0001F52E => Mystical
-    # Logician => \U0001F4AD => Thought Bubble
-    # Adventurer => \U0001F3A8 => Painter
-    # Mediator => \U0001F6A6 => Traffic light
+
+    # Logistician  => \U0001F52C => Microscope
+    # Consul       => \U0001F46B => People person
+    # Protagonist  => \U0001F385 => Santa
+    # Advocate     => \U0001F52E => Mystical
+    # Logician     => \U0001F4AD => Thought Bubble
+    # Adventurer   => \U0001F3A8 => Painter
+    # Mediator     => \U0001F6A6 => Traffic light
     # Entrepreneur => \U0001F4C8 => Business graph scale
-    # Architect => \U0001F477 => Hard-hat
-    # Virtuoso => \U0001F527 => Wrench
-    # Campaigner => \U0001F638 => Cat smiley
-    # Defender => \U0001F46E => Cop
-    # Debater => \U000023F0 => Clock
-    # Commander => \U00002708 => Airplane
-    # Executive => \U0001F4BC => Briefcase
-    # Entertainer => \U0001F3A4 => Microphone
+    # Architect    => \U0001F477 => Hard-hat
+    # Virtuoso     => \U0001F527 => Wrench
+    # Campaigner   => \U0001F638 => Cat smiley
+    # Defender     => \U0001F46E => Cop
+    # Debater      => \U000023F0 => Clock
+    # Commander    => \U00002708 => Airplane
+    # Executive    => \U0001F4BC => Briefcase
+    # Entertainer  => \U0001F3A4 => Microphone
 
     #Sentiment Emojis:
     Good = "\U0001F44D" # Thumbs Up
@@ -180,16 +183,15 @@ def process(text=None):
                 tempe = emotion1[i]
                 tempe_str = i
         whole_message += " They seem like they are feeling some " + emot_emojis[tempe_str] + "(" + tempe_str + ")."
-
-        if emot_emojis[tempe_str] == 'joy':
+        if tempe_str == 'joy':
             is_joy = True
-        elif emot_emojis[tempe_str] == 'sadness':
+        elif tempe_str == 'sadness':
             is_sadness = True
-        elif emot_emojis[tempe_str] == 'anger':
+        elif tempe_str == 'anger':
             is_anger = True
-        elif emot_emojis[tempe_str] == 'fear':
+        elif tempe_str == 'fear':
             is_fear = True
-        elif emot_emojis[tempe_str] == 'surprise':
+        elif tempe_str == 'surprise':
             is_surprise = True
 
     ################################################################################
@@ -210,31 +212,31 @@ def process(text=None):
     ################################################################################
     # RECOMMENDATION SECTION
     # ANALYZE THE RESULTS AND PROVIDE A SUGGESTION
-    whole_message += "\n Our Reccomendation: **Follow at your own risk!** \n"
+    result_message += "\n Our Reccomendation: **Follow at your own risk!** \n"
 
     if is_anger == True and is_sadness == True:
-        whole_message += " You might want to let things cool down."
-    elif is_joy == True and is_pos == True:
-        whole_message += " Everything sounds good, keep it up!"
-    elif is_surprise == True and is_sadness == True:
-            whole_message += " You should figure out what is going on."
-    elif is_fear == True and is_sadness == True:
-        whole_message += " It seems like they might need some comforting."
-    elif is_joy == True and is_surprise == True:
-        whole_message += " They seem intrigued, you should keep up the converation!"
-    elif is_joy == True:
-            whole_message += " You are doing everything right, they seem to really like you!"
-    elif is_fear == True:
-        whole_message += " Something might be worring them, you should find out what."
-    elif is_anger == True:
-            whole_message += " You should give them a few minutes to cool down and figure out what you did wrong. Good luck!"
-    elif is_sadness == True:
-        whole_message += " You should tread lightly here, they might be a little sensitive right now."
-    elif is_surprise == True:
-            whole_message += " Maybe you should clarify somethings with them?"
+        result_message += " You might want to let things cool down."
+    if is_joy == True and is_pos == True:
+        result_message += " Everything sounds good, keep it up!"
+    if is_surprise == True and is_sadness == True:
+        result_message += " You should figure out what is going on."
+    if is_fear == True and is_sadness == True:
+        result_message += " It seems like they might need some comforting."
+    if is_joy == True and is_surprise == True:
+        result_message += " They seem intrigued, you should keep up the converation!"
+    if is_joy == True:
+        result_message += " You are doing everything right, they seem to really like you!"
+    if is_fear == True:
+        result_message += " Something might be worring them, you should find out what."
+    if is_anger == True:
+        result_message += " You should give them a few minutes to cool down and figure out what you did wrong. Good luck!"
+    if is_sadness == True:
+        result_message += " You should tread lightly here, they might be a little sensitive right now."
+    if is_surprise == True:
+        result_message += " Maybe you should clarify somethings with them?"
 
-
+    print(is_surprise, is_sadness, is_anger, is_fear, is_joy, is_pos)
 
     ################################################################################
 
-    return whole_message
+    return [whole_message, result_message]
