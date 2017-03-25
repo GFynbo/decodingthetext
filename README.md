@@ -3,5 +3,5 @@ DecodingTheText
 
 Authors
 --------
-> Gavin Fynbo
-> Tatiana Diaz-Gallegos
+* Gavin Fynbo
+* Tatiana Diaz-Gallegos
